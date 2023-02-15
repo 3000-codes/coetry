@@ -4,34 +4,37 @@
  * 红豆生南国，春来发几枝。
  * 愿君多采撷，此物最相思。
  */
-
+const ONE_DAY=1000*60*60*24
 class ReadBean{
   branchCount=0
-  constructor(){}
+  constructor(){
+    if(new Date().getMonth()===0){
+    setInterval(()=>{
+      this.branchCount+=Math.floor(Math.random()*10)
+    },ONE_DAY)
+  }
+  }
   get metaphor(){
     return 'I miss you'
   }
 }
 class Mate{
-  tem=0
+  souvenirs:unknown[]=[]
   constructor(){}
-  pike(beans:ReadBean){
-    this.tem=beans.branchCount
+  pike(gift:unknown){
+    this.souvenirs.push(gift)
   }
 }
 const you=new Mate()
 
-function temp(){
+function miss(){
   // 红豆生南国
-  const myCountry={
-    redBean:new ReadBean()
+  const myCountry:any={
+    redBean:null
   }
   
   // 春来发几枝 : 几枝是指少于十枝还是指很多枝呢？
-  if(new Date().getMonth()===0){
-    myCountry.redBean.branchCount=Math.floor(Math.random()*10)
-    // myCountry.redBean=Math.floor(Math.random()*3000)
-  }
+  myCountry.redBean=new ReadBean()
   // 愿君多采撷
   if(you){
     you.pike(myCountry.redBean)
@@ -39,3 +42,5 @@ function temp(){
   // 此物最相思
   return myCountry.redBean.metaphor
 }
+
+export default {}
